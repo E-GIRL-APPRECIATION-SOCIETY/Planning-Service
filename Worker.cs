@@ -17,10 +17,10 @@ public class Worker : BackgroundService
     // POCO klasse format til beskeder
     private class PlanningMessage
     {
-        public int BookingId { get; set; }
-        public int PartySize { get; set; }
+        public string CustomerName { get; set; }
+        public DateTime PickupTime { get; set; }
         public string PickupLocation { get; set; }
-        public Datetime PickupTime { get; set; }
+        public string EndLocation { get; set; }
     }
 
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
@@ -49,10 +49,10 @@ public class Worker : BackgroundService
 
             //Bruger data fra POCO klasse til håndterbar data
             Console.WriteLine(" [x] Received Planning Message: {0} - {1} (Due Date: {2})",
-                planningMessage.BookingId,
-                planningMessage.PartySize,
+                planningMessage.CustomerName,
+                planningMessage.PickupTime,
                 planningMessage.PickupLocation,
-                planningMessage.PickupTime);
+                planningMessage.EndLocation);
 
         };
 

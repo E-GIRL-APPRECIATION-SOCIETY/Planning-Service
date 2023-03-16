@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "w7AGMrK3E1OLQcb/N3z3BjlgeB652+KoD2RyoFIYM57BdVswRgxhwg7V2zeIgq6gvspQ7bz1u+8JGqbchF68FQ==",
+  "dgSpecHash": "xLBhmotdwkFnB1mzKIJEG2Xija+SvHk6utDaUuQgQiP06tT/wjuWkVVCSkdh0aXlbgLOi/YqjN4VQKyLgHWqnA==",
   "success": true,
   "projectFilePath": "C:\\Users\\Chefen\\OneDrive\\Dokumenter\\4.Semester\\IT_infrastruktur\\Planning-Service\\ServiceWorker\\ServiceWorker.csproj",
   "expectedPackageFiles": [
@@ -29,6 +29,7 @@
     "C:\\Users\\Chefen\\.nuget\\packages\\microsoft.extensions.options\\7.0.1\\microsoft.extensions.options.7.0.1.nupkg.sha512",
     "C:\\Users\\Chefen\\.nuget\\packages\\microsoft.extensions.options.configurationextensions\\7.0.0\\microsoft.extensions.options.configurationextensions.7.0.0.nupkg.sha512",
     "C:\\Users\\Chefen\\.nuget\\packages\\microsoft.extensions.primitives\\7.0.0\\microsoft.extensions.primitives.7.0.0.nupkg.sha512",
+    "C:\\Users\\Chefen\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512",
     "C:\\Users\\Chefen\\.nuget\\packages\\rabbitmq.client\\6.4.0\\rabbitmq.client.6.4.0.nupkg.sha512",
     "C:\\Users\\Chefen\\.nuget\\packages\\system.diagnostics.diagnosticsource\\7.0.1\\system.diagnostics.diagnosticsource.7.0.1.nupkg.sha512",
     "C:\\Users\\Chefen\\.nuget\\packages\\system.diagnostics.eventlog\\7.0.0\\system.diagnostics.eventlog.7.0.0.nupkg.sha512",
