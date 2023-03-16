@@ -1,25 +1,27 @@
 {
   "format": 1,
   "restore": {
-    "/Users/mac/Documents/4_semester/IT_infrastruktur/PlanningService/ServiceWorker/ServiceWorker.csproj": {}
+    "C:\\Users\\sohja\\OneDrive\\Dokumenter\\Skole\\Fag\\4. semester\\IT_Arkitektur_og_Infrastruktur\\Microprojekt\\Planning-Service\\ServiceWorker\\ServiceWorker.csproj": {}
   },
   "projects": {
-    "/Users/mac/Documents/4_semester/IT_infrastruktur/PlanningService/ServiceWorker/ServiceWorker.csproj": {
+    "C:\\Users\\sohja\\OneDrive\\Dokumenter\\Skole\\Fag\\4. semester\\IT_Arkitektur_og_Infrastruktur\\Microprojekt\\Planning-Service\\ServiceWorker\\ServiceWorker.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/mac/Documents/4_semester/IT_infrastruktur/PlanningService/ServiceWorker/ServiceWorker.csproj",
+        "projectUniqueName": "C:\\Users\\sohja\\OneDrive\\Dokumenter\\Skole\\Fag\\4. semester\\IT_Arkitektur_og_Infrastruktur\\Microprojekt\\Planning-Service\\ServiceWorker\\ServiceWorker.csproj",
         "projectName": "ServiceWorker",
-        "projectPath": "/Users/mac/Documents/4_semester/IT_infrastruktur/PlanningService/ServiceWorker/ServiceWorker.csproj",
-        "packagesPath": "/Users/mac/.nuget/packages/",
-        "outputPath": "/Users/mac/Documents/4_semester/IT_infrastruktur/PlanningService/ServiceWorker/obj/",
+        "projectPath": "C:\\Users\\sohja\\OneDrive\\Dokumenter\\Skole\\Fag\\4. semester\\IT_Arkitektur_og_Infrastruktur\\Microprojekt\\Planning-Service\\ServiceWorker\\ServiceWorker.csproj",
+        "packagesPath": "C:\\Users\\sohja\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\sohja\\OneDrive\\Dokumenter\\Skole\\Fag\\4. semester\\IT_Arkitektur_og_Infrastruktur\\Microprojekt\\Planning-Service\\ServiceWorker\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/Users/mac/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\sohja\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net7.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -38,9 +40,17 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "dependencies": {
+            "MSTest.TestFramework": {
+              "target": "Package",
+              "version": "[3.0.2, )"
+            },
             "Microsoft.Extensions.Hosting": {
               "target": "Package",
               "version": "[7.0.1, )"
+            },
+            "NUnit": {
+              "target": "Package",
+              "version": "[3.13.3, )"
             }
           },
           "imports": [
@@ -59,7 +69,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.201/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.102\\RuntimeIdentifierGraph.json"
         }
       }
     }
