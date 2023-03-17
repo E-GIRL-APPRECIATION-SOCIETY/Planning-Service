@@ -18,11 +18,61 @@ public class Worker : BackgroundService
         _logger.LogInformation($"Miljø variabel er sat til : {_docPath}");
     }
 
-    // instansieret C# objekt der ligner en PlanDTO
-    planDTO testPlan = new planDTO{PlanID = 1, CustomerName = "Steve", StartTidspunkt = "16:30", StartSted = "København", SlutSted = "Tønder"};
+    private class PlanDTO
+    {
+        public string CustomerName { get; set; }
+        public DateTime PickupTime { get; set; }
+        public string PickupLocation { get; set; }
+        public string EndLocation { get; set; }
+    }
 
+    protected override async Task ExecuteAsync(CancellationToken stoppingToken)
+    {
+        var factory = new ConnectionFactory() { HostName = "localhost" };
+        using var connection = factory.CreateConnection();
+        using var channel = connection.CreateModel();
 
-    // Metode der tager stien til filen, og navnet på filen og skriver noget i bunden af den.
+        channel.QueueDeclare(queue: "Planning Service",
+                             durable: false,
+                             exclusive: false,
+                             autoDelete: false,
+                             arguments: null);
+
+        var consumer = new EventingBasicConsumer(channel);
+        consumer.Received += (model, ea) =>
+        {
+            var body = ea.Body.ToArray();
+            var message = Encoding.UTF8.GetString(body);
+
+            // Deserialize beskeden
+            var planningMessage = JsonConvert.DeserializeObject<PlanningMessage>(message);
+
+            //Bruger data fra POCO klasse til håndterbar data
+            Console.WriteLine(" [x] Received Planning Message: {0} - {1} (Due Date: {2})",
+                planningMessage.CustomerName,
+                planningMessage.PickupTime,
+                planningMessage.PickupLocation,
+                planningMessage.EndLocation);
+
+        };
+
+        channel.BasicConsume(queue: "Planning Service",
+                             autoAck: true,
+                             consumer: consumer);
+
+        Console.WriteLine(" Press [enter] to exit.");
+        Console.ReadLine();
+
+        while (!stoppingToken.IsCancellationRequested)
+        {
+            // Bruges til at teste implementering af skriv til CSV fil. Fjern // hvis testes
+            // writeCSVFile();
+            _logger.LogInformation("Worker running at: {time}", DateTimeOffset.Now);
+            await Task.Delay(1000, stoppingToken);
+        }
+    }
+
+     // Metode der tager stien til filen, og navnet på filen og skriver noget i bunden af den.
     public void writeCSVFile()
     {
         try
@@ -40,26 +90,6 @@ public class Worker : BackgroundService
             throw new ApplicationException("This program failed : ", ex);
         }
     }
-
-    protected override async Task ExecuteAsync(CancellationToken stoppingToken)
-    {
-        while (!stoppingToken.IsCancellationRequested)
-        {
-            // Bruges til at teste implementering af skriv til CSV fil. Fjern // hvis testes
-            // writeCSVFile();
-            _logger.LogInformation("Worker running at: {time}", DateTimeOffset.Now);
-            await Task.Delay(1000, stoppingToken);
-        }
-    }
 }
 
-// Test Model til at undersøge om StreamWriter kan skrive C# objekter
-public class planDTO
-{
-    public int PlanID { get; set; }
-    public string? CustomerName { get; set; }
-    public string? StartTidspunkt { get; set; }
-    public string? StartSted { get; set; }
-    public string? SlutSted { get; set; }
-}
 

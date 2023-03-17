@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\sohja\\OneDrive\\Dokumenter\\Skole\\Fag\\4. semester\\IT_Arkitektur_og_Infrastruktur\\Microprojekt\\Planning-Service\\ServiceWorker\\ServiceWorker.csproj": {}
+    "C:\\Users\\Chefen\\OneDrive\\Dokumenter\\4.Semester\\IT_infrastruktur\\Planning-Service\\ServiceWorker\\ServiceWorker.csproj": {}
   },
   "projects": {
-    "C:\\Users\\sohja\\OneDrive\\Dokumenter\\Skole\\Fag\\4. semester\\IT_Arkitektur_og_Infrastruktur\\Microprojekt\\Planning-Service\\ServiceWorker\\ServiceWorker.csproj": {
+    "C:\\Users\\Chefen\\OneDrive\\Dokumenter\\4.Semester\\IT_infrastruktur\\Planning-Service\\ServiceWorker\\ServiceWorker.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\sohja\\OneDrive\\Dokumenter\\Skole\\Fag\\4. semester\\IT_Arkitektur_og_Infrastruktur\\Microprojekt\\Planning-Service\\ServiceWorker\\ServiceWorker.csproj",
+        "projectUniqueName": "C:\\Users\\Chefen\\OneDrive\\Dokumenter\\4.Semester\\IT_infrastruktur\\Planning-Service\\ServiceWorker\\ServiceWorker.csproj",
         "projectName": "ServiceWorker",
-        "projectPath": "C:\\Users\\sohja\\OneDrive\\Dokumenter\\Skole\\Fag\\4. semester\\IT_Arkitektur_og_Infrastruktur\\Microprojekt\\Planning-Service\\ServiceWorker\\ServiceWorker.csproj",
-        "packagesPath": "C:\\Users\\sohja\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\sohja\\OneDrive\\Dokumenter\\Skole\\Fag\\4. semester\\IT_Arkitektur_og_Infrastruktur\\Microprojekt\\Planning-Service\\ServiceWorker\\obj\\",
+        "projectPath": "C:\\Users\\Chefen\\OneDrive\\Dokumenter\\4.Semester\\IT_infrastruktur\\Planning-Service\\ServiceWorker\\ServiceWorker.csproj",
+        "packagesPath": "C:\\Users\\Chefen\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Chefen\\OneDrive\\Dokumenter\\4.Semester\\IT_infrastruktur\\Planning-Service\\ServiceWorker\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\sohja\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Chefen\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -51,6 +51,10 @@
             "NUnit": {
               "target": "Package",
               "version": "[3.13.3, )"
+            },
+            "RabbitMQ.Client": {
+              "target": "Package",
+              "version": "[6.4.0, )"
             }
           },
           "imports": [
@@ -69,7 +73,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.102\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.200\\RuntimeIdentifierGraph.json"
         }
       }
     }
