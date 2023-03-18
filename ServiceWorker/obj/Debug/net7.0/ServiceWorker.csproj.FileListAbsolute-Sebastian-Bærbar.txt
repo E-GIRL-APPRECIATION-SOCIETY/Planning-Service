@@ -1,0 +1,5 @@
+C:\Users\zulud\OneDrive\Dokumenter\Skole\Fag\4. semester\IT_Arkitektur_og_Infrastruktur\Microprojekt\Planning-Service\ServiceWorker\obj\Debug\net7.0\ServiceWorker.csproj.AssemblyReference.cache
+C:\Users\zulud\OneDrive\Dokumenter\Skole\Fag\4. semester\IT_Arkitektur_og_Infrastruktur\Microprojekt\Planning-Service\ServiceWorker\obj\Debug\net7.0\ServiceWorker.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\zulud\OneDrive\Dokumenter\Skole\Fag\4. semester\IT_Arkitektur_og_Infrastruktur\Microprojekt\Planning-Service\ServiceWorker\obj\Debug\net7.0\ServiceWorker.AssemblyInfoInputs.cache
+C:\Users\zulud\OneDrive\Dokumenter\Skole\Fag\4. semester\IT_Arkitektur_og_Infrastruktur\Microprojekt\Planning-Service\ServiceWorker\obj\Debug\net7.0\ServiceWorker.AssemblyInfo.cs
+C:\Users\zulud\OneDrive\Dokumenter\Skole\Fag\4. semester\IT_Arkitektur_og_Infrastruktur\Microprojekt\Planning-Service\ServiceWorker\obj\Debug\net7.0\ServiceWorker.csproj.CoreCompileInputs.cache

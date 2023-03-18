@@ -1,5 +1,9 @@
 using System;
 using System.IO;
+using RabbitMQ.Client;
+using RabbitMQ.Client.Events;
+using System.Text;
+using Newtonsoft.Json;
 
 namespace ServiceWorker;
 
@@ -18,7 +22,7 @@ public class Worker : BackgroundService
         _logger.LogInformation($"Miljø variabel er sat til : {_docPath}");
     }
 
-    private class PlanDTO
+    public class PlanDTO
     {
         public string CustomerName { get; set; }
         public DateTime PickupTime { get; set; }
@@ -28,6 +32,7 @@ public class Worker : BackgroundService
 
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
     {
+        
         var factory = new ConnectionFactory() { HostName = "localhost" };
         using var connection = factory.CreateConnection();
         using var channel = connection.CreateModel();
@@ -45,7 +50,7 @@ public class Worker : BackgroundService
             var message = Encoding.UTF8.GetString(body);
 
             // Deserialize beskeden
-            var planningMessage = JsonConvert.DeserializeObject<PlanningMessage>(message);
+            var planningMessage = JsonConvert.DeserializeObject<PlanDTO>(message);
 
             //Bruger data fra POCO klasse til håndterbar data
             Console.WriteLine(" [x] Received Planning Message: {0} - {1} (Due Date: {2})",
@@ -54,6 +59,17 @@ public class Worker : BackgroundService
                 planningMessage.PickupLocation,
                 planningMessage.EndLocation);
 
+            // Instansieret PlanDTO C# object der kan bruges til test.
+            PlanDTO bobby = new PlanDTO {
+                CustomerName="Steve",
+                PickupTime=DateTime.Now,
+                PickupLocation="Aarhus",
+                EndLocation="Koebenhavn"
+            };
+
+            // Skriv til CSV fil metode. Husk at lave miljø variabel
+            // export DocPath="C:\Temp"
+            writeCSVFile(planningMessage);            
         };
 
         channel.BasicConsume(queue: "Planning Service",
@@ -65,24 +81,22 @@ public class Worker : BackgroundService
 
         while (!stoppingToken.IsCancellationRequested)
         {
-            // Bruges til at teste implementering af skriv til CSV fil. Fjern // hvis testes
-            // writeCSVFile();
             _logger.LogInformation("Worker running at: {time}", DateTimeOffset.Now);
             await Task.Delay(1000, stoppingToken);
         }
     }
 
-     // Metode der tager stien til filen, og navnet på filen og skriver noget i bunden af den.
-    public void writeCSVFile()
+    // Metode der tager stien til filen, og navnet på filen og skriver noget i bunden af den.
+    public void writeCSVFile(PlanDTO _planDTO)
     {
         try
         {
             using (StreamWriter outputFile = new StreamWriter(Path.Combine(_docPath, "plan.csv"), true))
             {
-                outputFile.WriteLine(testPlan.CustomerName + ", " + 
-                testPlan.StartTidspunkt + ", " + 
-                testPlan.StartSted + ", " + 
-                testPlan.SlutSted);
+                outputFile.WriteLine(_planDTO.CustomerName + ", " +
+                _planDTO.PickupTime + ", " + 
+                _planDTO.PickupLocation + ", " + 
+                _planDTO.EndLocation);
             }
         }
         catch (Exception ex)
