@@ -32,55 +32,57 @@ public class Worker : BackgroundService
 
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
     {
-        
-        var factory = new ConnectionFactory() { HostName = "localhost" };
-        using var connection = factory.CreateConnection();
-        using var channel = connection.CreateModel();
-
-        channel.QueueDeclare(queue: "Planning Service",
-                             durable: false,
-                             exclusive: false,
-                             autoDelete: false,
-                             arguments: null);
-
-        var consumer = new EventingBasicConsumer(channel);
-        consumer.Received += (model, ea) =>
-        {
-            var body = ea.Body.ToArray();
-            var message = Encoding.UTF8.GetString(body);
-
-            // Deserialize beskeden
-            var planningMessage = JsonConvert.DeserializeObject<PlanDTO>(message);
-
-            //Bruger data fra POCO klasse til håndterbar data
-            Console.WriteLine(" [x] Received Planning Message: {0} - {1} (Due Date: {2})",
-                planningMessage.CustomerName,
-                planningMessage.PickupTime,
-                planningMessage.PickupLocation,
-                planningMessage.EndLocation);
-
-            // Instansieret PlanDTO C# object der kan bruges til test.
-            PlanDTO bobby = new PlanDTO {
-                CustomerName="Steve",
-                PickupTime=DateTime.Now,
-                PickupLocation="Aarhus",
-                EndLocation="Koebenhavn"
-            };
-
-            // Skriv til CSV fil metode. Husk at lave miljø variabel
-            // export DocPath="C:\Temp"
-            writeCSVFile(planningMessage);            
-        };
-
-        channel.BasicConsume(queue: "Planning Service",
-                             autoAck: true,
-                             consumer: consumer);
-
-        Console.WriteLine(" Press [enter] to exit.");
-        Console.ReadLine();
-
         while (!stoppingToken.IsCancellationRequested)
         {
+            var factory = new ConnectionFactory() { HostName = "localhost" };
+            using var connection = factory.CreateConnection();
+            using var channel = connection.CreateModel();
+
+            channel.QueueDeclare(queue: "Planning Service",
+                                 durable: false,
+                                 exclusive: false,
+                                 autoDelete: false,
+                                 arguments: null);
+
+            var consumer = new EventingBasicConsumer(channel);
+            consumer.Received += (model, ea) =>
+            {
+                _logger.LogInformation("Json object recieved at {DT}");
+                var body = ea.Body.ToArray();
+                var message = Encoding.UTF8.GetString(body);
+
+                // Deserialize beskeden
+                var planningMessage = JsonConvert.DeserializeObject<PlanDTO>(message);
+
+                //Bruger data fra POCO klasse til håndterbar data
+                Console.WriteLine(" [x] Received Planning Message: {0} - {1} (Due Date: {2})",
+                    planningMessage.CustomerName,
+                    planningMessage.PickupTime,
+                    planningMessage.PickupLocation,
+                    planningMessage.EndLocation);
+
+                // Instansieret PlanDTO C# object der kan bruges til test.
+                PlanDTO bobby = new PlanDTO
+                {
+                    CustomerName = "Steve",
+                    PickupTime = DateTime.Now,
+                    PickupLocation = "Aarhus",
+                    EndLocation = "Koebenhavn"
+                };
+
+                // Skriv til CSV fil metode. Husk at lave miljø variabel
+                // export DocPath="C:\Temp"
+                writeCSVFile(planningMessage);
+                
+            };
+
+            channel.BasicConsume(queue: "Planning Service",
+                                 autoAck: true,
+                                 consumer: consumer);
+
+            // Console.WriteLine(" Press [enter] to exit.");
+            // Console.ReadLine();
+
             _logger.LogInformation("Worker running at: {time}", DateTimeOffset.Now);
             await Task.Delay(1000, stoppingToken);
         }
@@ -94,8 +96,8 @@ public class Worker : BackgroundService
             using (StreamWriter outputFile = new StreamWriter(Path.Combine(_docPath, "plan.csv"), true))
             {
                 outputFile.WriteLine(_planDTO.CustomerName + ", " +
-                _planDTO.PickupTime + ", " + 
-                _planDTO.PickupLocation + ", " + 
+                _planDTO.PickupTime + ", " +
+                _planDTO.PickupLocation + ", " +
                 _planDTO.EndLocation);
             }
         }
