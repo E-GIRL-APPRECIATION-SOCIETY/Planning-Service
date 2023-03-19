@@ -1,0 +1,40 @@
+version: '3.8'
+
+services:
+  booking:
+    image: yunglordyaya/taxa-service:latest
+    environment:
+      - DocPath=/srv/docs/
+      - RabbitMQ=messagebroker-1
+    ports:
+      - "5001:80"
+    networks:
+      - default
+    volumes:
+      - docs:/srv/docs
+  planning:
+    image: stevethebeef7/planning-service-image:latest
+    environment:
+      - DocPath=/srv/docs/
+      - RabbitMQ=messagebroker-1
+    ports:
+      - "5002:80"
+    networks:
+      - default
+    volumes:
+      - docs:/srv/docs
+  messagebroker:
+    image: rabbitmq:management
+    ports:
+      - "15672:15672"
+      - "5672:5672"
+    networks:
+      - default
+
+volumes:
+  docs:
+  external: false
+networks:
+ default:
+  driver: bridge
+  name: mitnet
