@@ -4,21 +4,19 @@ services:
   booking:
     image: yunglordyaya/taxa-service:latest
     environment:
-      - DocPath=/srv/docs/
-      - RabbitMQ=messagebroker
+      - DocPath=../srv/docs/
+      - RabbitMQ=dev-rabbit
     ports:
       - "5001:80"
     networks:
       - default
     volumes:
       - docs:/srv/docs
-    depends_on:
-      - messagebroker
   planning:
     image: stevethebeef7/planning-service-image:latest
     environment:
-      - DocPath=/srv/docs/
-      - RabbitMQ=messagebroker
+      - DocPath=../srv/docs/
+      - RabbitMQ=dev-rabbit
     ports:
       - "5002:80"
     networks:
@@ -26,16 +24,11 @@ services:
     volumes:
       - docs:/srv/docs
     depends_on:
-      - messagebroker
-  messagebroker:
-    image: rabbitmq:management
-    ports:
-      - "15672:15672"
-      - "5672:5672"
+      - rabbitmq
 
 volumes:
-  docs:
-    external: false
+ images:
+  external: false
 networks:
  default:
   driver: bridge

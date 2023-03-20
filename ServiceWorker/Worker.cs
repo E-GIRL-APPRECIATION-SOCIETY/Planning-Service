@@ -21,7 +21,7 @@ public class Worker : BackgroundService
         _rabbitMQ = config["RabbitMQ"];
         _logger = logger;
 
-        // Bruges til at skrive miljø variablen i konsolen
+        // Bruges til at logge miljø variablen i konsolen
         _logger.LogInformation($"Fil sti er sat til : {_docPath}");
         _logger.LogInformation($"RabbitMQ connection er sat til : {_rabbitMQ}");
     }
@@ -95,6 +95,11 @@ public class Worker : BackgroundService
     // Metode der tager stien til filen, og navnet på filen og skriver noget i bunden af den.
     public void writeCSVFile(PlanDTO _planDTO)
     {
+        if (!File.Exists(Path.Combine(_docPath, "plan.csv")))
+        {
+            using (StreamWriter outputFile = new StreamWriter(Path.Combine(_docPath, "plan.csv")));
+        }
+
         try
         {
             using (StreamWriter outputFile = new StreamWriter(Path.Combine(_docPath, "plan.csv"), true))
