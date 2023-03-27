@@ -5,6 +5,16 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <UserSecretsId>dotnet-ServiceWorker-567318e6-f341-4aa8-9d99-12ad164cec41</UserSecretsId>
+    <Company>Quick Go Taxa A/S</Company>
+    <Authors>Dit Navn</Authors>
+    <Copyright>2022 HTU ApS</Copyright>
+    <AssemblyVersion>1.0.1.1</AssemblyVersion>
+    <FileVersion>1.0.1.1</FileVersion>
+    <InformationalVersion>1.0.0</InformationalVersion>
+    <Description>
+      1.0.0 Updated with Semantic Versioning
+      0.9.0 Dockerfile Service Added to App
+    </Description>
   </PropertyGroup>
 
   <ItemGroup>

@@ -7,5 +7,5 @@ build_property.InvariantGlobalization =
 build_property.PlatformNeutralAssembly = 
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
-build_property.RootNamespace = ServiceWorker
-build_property.ProjectDir = C:\Users\sohja\OneDrive\Dokumenter\Skole\Fag\4. semester\IT_Arkitektur_og_Infrastruktur\Microprojektet\Planning-Service\ServiceWorker\
+build_property.RootNamespace = serviceworker
+build_property.ProjectDir = c:\Users\zulud\OneDrive\Dokumenter\Skole\Fag\4. semester\IT_Arkitektur_og_Infrastruktur\Microprojektet\min-solution\planning-service\serviceworker\
