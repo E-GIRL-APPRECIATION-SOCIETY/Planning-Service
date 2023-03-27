@@ -26,4 +26,4 @@ jobs:
     - name: Push Docker image to Docker Hub
       env:
         DOCKER_USER: ${{ secrets.DOCKER_USER }}
-      run: docker push {DOCKER_USER}/planning-service:latest-dev
+      run: docker push ${DOCKER_USER}/planning-service:latest-dev
